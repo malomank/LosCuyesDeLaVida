@@ -62,4 +62,27 @@ public abstract class Personaje { //sin constructor
 		this.estadoActual = estadoActual;
 	}
 	
+	public void agregarSprites(ArrayList<Sprite> sprites, int estado ){
+		for(int i = 0 ; i<sprites.size() ; i++){
+		   matriz[estado][i] = new Sprite();
+		   // Aqui se debe agregar la referencia a sprite que se carga
+		   
+		}
+	}
+	
+	public void setMainValues(int ancho , int alto , int posX, int posY, char letra , boolean visible , boolean atravesable ){		
+		setAlto(alto);
+		setAncho(ancho);	
+		pos = new Posicion(posX, posY); 
+		setLetraAsociada(letra);
+		setVisible(visible);
+		setAtravesable(atravesable);
+		estados = new ArrayList<Integer>(10);
+		for(int i = 0 ; i<=10 ; i++) {  // Añados estados del 0 a. 9			
+			estados.add((Integer)i) ; 
+		}
+		// Considero 10 estados por 20 imagenes
+		matriz  = new Sprite[10][20];
+		estadoActual = estados.get(0) ; // estado inicial es el el valor del primer indice
+	}
 }
