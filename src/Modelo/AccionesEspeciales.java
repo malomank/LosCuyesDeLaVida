@@ -15,12 +15,12 @@ public class AccionesEspeciales {
 		this.duo = new Combinaciones[4];
 	}
 	
-	public void setCadenasIndividuales(char x[]){
-		this.individuales[numIndividuales++].setLetrasEspeciales(x);
+	public void setCadenasIndividuales(String cadena){
+		this.individuales[numIndividuales++].setLetrasEspeciales(cadena);
 	}
 	
-	public void setCadenasDuos(char x[]){
-		this.duo[numDuos++].setLetrasEspeciales(x);
+	public void setCadenasDuos(String cadena){
+		this.duo[numDuos++].setLetrasEspeciales(cadena);
 	}
 	
 	public void setIndividuales(char[] x){
