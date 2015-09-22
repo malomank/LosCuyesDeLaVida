@@ -7,17 +7,17 @@ public class Mapa {
 	private int contador ; 
 	
 	public Mapa(){		//Inicializa el mapa con caracteres en blanco
-		for(int i=0;i<12;i++){
-			for(int j=0;j<16;j++){
-				mapa[i][j] = new Celda(' ', i, j);
+		for(int fil=0;fil<12;fil++){
+			for(int col=0;col<16;col++){
+				mapa[fil][col] = new Celda( fil, col,' ');
 			}
 		}
 	}
 	
 	public void ImprimirMapa(){ //Imprime mapa para verificar que estaba bien cargado
-		for(int i=0;i<12;i++){
-			for(int j=0;j<16;j++){
-				System.out.print(mapa[i][j].getCaracter());
+		for(int fil=0;fil<12;fil++){
+			for(int col=0;col<16;col++){
+				System.out.print(mapa[fil][col].getCaracter());
 			}
 			System.out.println();
 			}
