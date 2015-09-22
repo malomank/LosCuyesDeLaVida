@@ -2,25 +2,15 @@ package Modelo;
 
 public class Combinaciones {
 
-	private int numLetras;
-	private char[] letrasEspeciales ;
+	private String letrasEspeciales ;
 	//acciones arreglo de string
-	
-	public Combinaciones(){
-		this.numLetras = 0;
-	}
-	public char[] getLetrasEspeciales() {
+
+	public String getLetrasEspeciales() {
 		return letrasEspeciales;
 	}
-	public void setLetrasEspeciales(char[] letrasEspeciales) {
+
+	public void setLetrasEspeciales(String letrasEspeciales) {
 		this.letrasEspeciales = letrasEspeciales;
 	}
-
-	public int getNumLetras() {
-		return numLetras;
-	}
-
-	public void setNumLetras(int numLetras) {
-		this.numLetras = numLetras;
-	}
+	
 }
