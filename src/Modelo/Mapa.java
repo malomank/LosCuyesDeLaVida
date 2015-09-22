@@ -1,6 +1,7 @@
 package Modelo;
 
-public class Mapa {
+
+public class Mapa{
 	private AccionesEspeciales acciones;
 	private Celda [][] mapa = new Celda[12][16];
 	private int estadoDuo ; 
@@ -16,6 +17,10 @@ public class Mapa {
 	//funcion 
 	public void establecerCaracter(int i, int j, char x){
 		mapa[i][j].setCaracter(x);
+	}
+	
+	public char obtenerCaracter(int fil, int col){
+		return mapa[fil][col].getCaracter();
 	}
 	
 	public void ImprimirMapa(){ //Imprime mapa para verificar que estaba bien cargado

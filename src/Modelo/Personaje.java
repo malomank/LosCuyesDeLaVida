@@ -14,6 +14,10 @@ public abstract class Personaje { //sin constructor
 	private ArrayList<Integer> estados ; //Sin set y get
 	private int estadoActual ;
 	
+	public boolean getPos(int fil, int col){ //Retorna verdadero si está en la posición solicitada
+		return (this.pos.getFila() == fil && this.pos.getColumna() == col);
+	}
+	
 	public int getAncho() {
 		return ancho;
 	}
