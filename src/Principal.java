@@ -1,4 +1,5 @@
 import Controlador.*;
+import Vista.Juego;
 
 public class Principal {
 

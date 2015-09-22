@@ -8,9 +8,9 @@ public class GestorMapas {
 		public void crearMapa(Mapa mapa,int indice){
 			switch (indice){
 			case 0:
-					//char cadena[] = {'W','S','I','K','D','D','L','L'};
-					//mapa.setAccionesIndividual1es();
-					//mapa.setAccionesIndividuales();
+					//String cadena = "WSIKDDLL";
+					//mapa.setAccionesIndividuales(cadena);
+					//mapa.setAccionesIndividuales(cadena);
 					for(int i=0;i<12;i++){
 						for(int j=0;j<16;j++){
 							if(i>2 && i<7) {

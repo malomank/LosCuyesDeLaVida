@@ -1,5 +1,4 @@
-package Controlador;
-import Vista.Renderizador;
+package Vista;
 import Modelo.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +6,9 @@ import java.util.Scanner;
 
 import com.sun.nio.sctp.PeerAddressChangeNotification;
 import com.sun.xml.internal.ws.encoding.MimeMultipartParser;
+
+import Controlador.GestorMapas;
+import Controlador.InterpreteComandos;
 
 public class Juego implements Renderizador{
 
@@ -32,7 +34,6 @@ public class Juego implements Renderizador{
 		FinDelJuego();
 	}
 
-	
 	public Juego(int numeroMapas , int numerosDeObjetos , int numPersSecund){
 		 nextLevel =  0  ;
 		 listObjetos  = new  ArrayList <Objeto>(numerosDeObjetos) ; 
@@ -66,40 +67,13 @@ public class Juego implements Renderizador{
 	public void PerdisteElJuego(){
 		System.out.println("Game Over");	
 	}
-	public boolean movimientoValido(Personaje a ,Personaje b , int direccion , Mapa mapa){
-		int xx , yy ,posibleX , posibleY ;  
-		if( direccion == 1 || direccion == 7){ 			 
-			xx = -1 ; yy = 0 ; 
-		}else if(direccion == 2 || direccion == 8){
-			xx = +1 ; yy = 0;			
-		}else if(direccion == 3 || direccion == 9){
-			xx = 0 ; yy = -1 ; 
-		}else if(direccion == 4 || direccion == 10){
-			xx = 0 ; yy = +1 ;			
-		}else {
-			xx = 0 ; yy = 0;
-		}
-		if(direccion <=6 ){
-			posibleX = a.getPosX()  +  xx ;
-			posibleY = a.getPosY()  +  yy ;			
-		}else{
-			posibleX = b.getPosX()  +  xx ;
-			posibleY = b.getPosY()  +  yy ;			
-		}
 		
-		if(!(  posibleX >= 0 && posibleX <=11 )) return false ; 
-		if(!(  posibleY >= 0 && posibleY <=15 ))return false ;
-		char c = mapa.obtenerCaracter(posibleX, posibleY) ; 
-		if (c == 'N' || c=='S' || c =='T' || c == 'E' || c == 'D' || c == 'C' ||  c=='@') return true ; 
-		if (c == 'p' || c == 'v') return false ; 		
-		return false ; 		
-	}
-	
 	public void Nivel_2(PersonajePrincipal perA, PersonajePrincipal perB){
 		int entero, direccion;
 		char entrada ; 
 		System.out.println("Bienvenido al Nivel_2  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
+		//Posición inicial de los cuyes de nivel 2
 		perA.setPosX(10);
 		perA.setPosY(0);
 		perB.setPosX(5);
@@ -118,8 +92,8 @@ public class Juego implements Renderizador{
 			entrada = teclado.next().charAt(0); 
 			direccion = interpreteComando.esTeclaValida(entrada);
 			System.out.println(direccion);
-				if (movimientoValido(perA , perB , direccion , listMapas.get(2))){
-					moverPersonajes(perA, perB, direccion);		
+				if (interpreteComando.movimientoValido(perA , perB , direccion , listMapas.get(2))){
+					interpreteComando.moverPersonajes(perA, perB, direccion);		
 				}
 			}
 			if (perA.getVida() > 0 )Historia_3();
@@ -134,32 +108,13 @@ public class Juego implements Renderizador{
 		linea = teclado.next();
 		Nivel_2(perA, perB);
 	}
-	public void moverPersonajes(Personaje a ,Personaje b , int direccion ){
-		int xx , yy ;
-		if( direccion == 1 || direccion == 7){ 			 
-			xx = -1 ; yy = 0 ; 
-		}else if(direccion == 2 || direccion == 8){
-			xx = +1 ; yy = 0;			
-		}else if(direccion == 3 || direccion == 9){
-			xx = 0 ; yy = -1 ; 
-		}else if(direccion == 4 || direccion == 10){
-			xx = 0 ; yy = +1 ;			
-		}else {
-			xx = 0 ; yy = 0;
-		}
-		if(direccion <=6 ){
-			a.setPosX( a.getPosX() + xx );
-			a.setPosY( a.getPosY() + yy );
-		}else {
-			b.setPosX( b.getPosX() + xx );
-			b.setPosY( b.getPosY() + yy );			
-		}
-	}
+	
 	public void Nivel_1(PersonajePrincipal perA , PersonajePrincipal perB){
 		int entero, direccion;
 		char entrada ; 
 		System.out.println("Bienvenido al Nivel_1  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
+		//POsición inicial en Nivel 1
 		perA.setPosX(11);
 		perA.setPosY(0);
 		perB.setPosX(7);
@@ -177,8 +132,8 @@ public class Juego implements Renderizador{
 			entrada = teclado.next().charAt(0); 
 			direccion = interpreteComando.esTeclaValida(entrada);
 			System.out.println(direccion);
-				if (movimientoValido(perA , perB , direccion , listMapas.get(1))){
-					moverPersonajes(perA, perB, direccion);		
+				if (interpreteComando.movimientoValido(perA , perB , direccion , listMapas.get(1))){
+					interpreteComando.moverPersonajes(perA, perB, direccion);		
 				}
 			}
 			if (perA.getVida() > 0 )							
@@ -216,8 +171,8 @@ public class Juego implements Renderizador{
 			entrada = teclado.next().charAt(0); 
 			direccion = interpreteComando.esTeclaValida(entrada);
 			System.out.println(direccion);
-				if (movimientoValido(perA , perB , direccion , listMapas.get(0))){
-					moverPersonajes(perA, perB, direccion);		
+				if (interpreteComando.movimientoValido(perA , perB , direccion , listMapas.get(0))){
+					interpreteComando.moverPersonajes(perA, perB, direccion);		
 				}
 			}
 			if (perA.getVida() > 0 ) Nivel_1(perA, perB);
@@ -561,11 +516,11 @@ public class Juego implements Renderizador{
 	//La impresion del duo
 	public void ImprimirDuo2(Mapa mapa, PersonajePrincipal cuy1, PersonajePrincipal  cuy2){
 		Scanner teclado = new Scanner(System.in);
-		System.out.println("DEBE PRESIONAR IWOELD");
+		System.out.println("DEBE PRESIONAR WDEWW");
 		String duo1 = "WDEWW" ;
 		String entrada = teclado.nextLine() ;
 		while ( !duo1.equals(entrada))  {
-			System.out.println("DEBE PRESIONAR IWOELD");
+			System.out.println("DEBE PRESIONAR WDEWW");
 			cuy1.setVida(cuy1.getVida() -1) ;
 			if (cuy1.getVida() <= 0 ) return ; 
 			entrada = teclado.nextLine() ; 
