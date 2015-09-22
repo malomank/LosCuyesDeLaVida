@@ -4,7 +4,7 @@ import Modelo.*;
 public class GestorMapas {
 
 	// crea mapa (de la forma que estaba en el proyecto anterior)
-	
+	    
 		public void crearMapa(Mapa mapa,int indice){
 			switch (indice){
 			case 0:
