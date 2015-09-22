@@ -562,7 +562,7 @@ public class Juego implements Renderizador{
 	public void ImprimirDuo2(Mapa mapa, PersonajePrincipal cuy1, PersonajePrincipal  cuy2){
 		Scanner teclado = new Scanner(System.in);
 		System.out.println("DEBE PRESIONAR IWOELD");
-		String duo1 = "IWOELD" ;
+		String duo1 = "WDEWW" ;
 		String entrada = teclado.nextLine() ;
 		while ( !duo1.equals(entrada))  {
 			System.out.println("DEBE PRESIONAR IWOELD");

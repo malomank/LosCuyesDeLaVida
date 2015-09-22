@@ -14,6 +14,15 @@ public class Mapa{
 			}
 		}
 	}
+	
+	//Carga combinaciones por mapa
+	public void setAccionesIndividuales(char x[]){
+		this.acciones.setCadenasIndividuales(x);
+	}
+	
+	public void setAccionesDuos(char x[]){
+		this.acciones.setCadenasDuos(x);
+	}
 	//funcion 
 	public void establecerCaracter(int i, int j, char x){
 		mapa[i][j].setCaracter(x);
