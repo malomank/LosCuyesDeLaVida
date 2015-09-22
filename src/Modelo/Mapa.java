@@ -13,6 +13,10 @@ public class Mapa {
 			}
 		}
 	}
+	//funcion 
+	public void establecerCaracter(int i, int j, char x){
+		mapa[i][j].setCaracter(x);
+	}
 	
 	public void ImprimirMapa(){ //Imprime mapa para verificar que estaba bien cargado
 		for(int fil=0;fil<12;fil++){
