@@ -1,11 +1,9 @@
 package Vista;
 import Modelo.*;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.sun.nio.sctp.PeerAddressChangeNotification;
-import com.sun.xml.internal.ws.encoding.MimeMultipartParser;
 
 import Controlador.GestorMapas;
 import Controlador.InterpreteComandos;
