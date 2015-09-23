@@ -1,6 +1,7 @@
 package Vista;
 import Modelo.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,7 +47,12 @@ public class Juego implements Renderizador{
 		 
 		 int indice = 0 ;
 		 for (Mapa miMapa : listMapas){
-			 gestorMapa.crearMapa(miMapa, indice);
+			 try {
+				gestorMapa.crearMapa(miMapa, indice);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			 miMapa.setContador(0);
 			 miMapa.setEstadoDuo(indice);
 			 indice++ ; 
@@ -296,8 +302,8 @@ public class Juego implements Renderizador{
 				}
 				if(flagAccA>0){
 					System.out.println("CRISTOBAL PUEDE HACER UNA ACCION");
-					if(cuy1.getPosX()==9 && cuy1.getPosY()==11) AccionTutorial(mapa, cuy1, cuy2);
-					else AccionNivel2A(mapa, cuy1, cuy2);
+					if(cuy1.getPosX()==9 && cuy1.getPosY()==11) AccionNivel2A(mapa, cuy1, cuy2);
+					else AccionTutorial(mapa, cuy1, cuy2);
 				}
 				if(flagAccB>0){
 					System.out.println("LA HERMANA PUEDE HACER UNA ACCION");
