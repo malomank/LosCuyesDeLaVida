@@ -5,7 +5,7 @@ public abstract class Personaje { //sin constructor
 
 	private  int ancho ; 
 	private int alto ; 
-	private Posicion pos; //Sin set y get
+	private Posicion posicion; //Sin set y get
 	private char letraAsociada ;
 	private boolean visible ; 
 	private boolean atravesable ;
@@ -13,6 +13,28 @@ public abstract class Personaje { //sin constructor
 	private Sprite matriz[][] ; //Sin set y get
 	private ArrayList<Integer> estados ; //Sin set y get
 	private int estadoActual ;
+	
+	
+    public int getPosX(){    	
+    	return posicion.getFila() ; 
+    }
+   	
+    public int getPosY(){    	
+    	return posicion.getColumna() ; 
+    }
+    
+    public void setPosX(int posX){
+    	posicion.setFila(posX);    	
+    } 
+    
+    public void setPosY(int posY){
+    	posicion.setColumna(posY);    	
+    }
+    
+	
+	public boolean getPos(int fil, int col){ //Retorna verdadero si está en la posición solicitada
+		return (this.getPosicion().getFila() == fil && this.getPosicion().getColumna() == col);
+	}
 	
 	public int getAncho() {
 		return ancho;
@@ -73,7 +95,7 @@ public abstract class Personaje { //sin constructor
 	public void setMainValues(int ancho , int alto , int posX, int posY, char letra , boolean visible , boolean atravesable ){		
 		setAlto(alto);
 		setAncho(ancho);	
-		pos = new Posicion(posX, posY); 
+		setPosicion(new Posicion(posX, posY)); 
 		setLetraAsociada(letra);
 		setVisible(visible);
 		setAtravesable(atravesable);
@@ -84,5 +106,13 @@ public abstract class Personaje { //sin constructor
 		// Considero 10 estados por 20 imagenes
 		matriz  = new Sprite[10][20];
 		estadoActual = estados.get(0) ; // estado inicial es el el valor del primer indice
+	}
+
+	public Posicion getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(Posicion posicion) {
+		this.posicion = posicion;
 	}
 }
