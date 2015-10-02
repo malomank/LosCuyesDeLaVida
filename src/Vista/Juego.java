@@ -1,4 +1,5 @@
 package Vista;
+
 import Modelo.*;
 
 import java.io.IOException;
@@ -209,6 +210,8 @@ public class Juego implements Renderizador{
 		while(true){
 		
 			teclado = new Scanner(System.in);
+			
+			new Imagen();
 			
 			System.out.println("Bienvenidos Todos! amiguitos! a este juego kawai!\n\n");
 			System.out.println("1) Nuevo juego");
