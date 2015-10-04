@@ -14,10 +14,10 @@ public class Celda {
 		pos = new Posicion(fil,col);
 	}
 	
-	private char getCaracter() {
+	public char getCaracter() {
 		return caracter;
 	}
-	private void setCaracter(char caracter) {
+	public void setCaracter(char caracter) {
 		this.caracter = caracter;
 	}
 	
