@@ -10,10 +10,9 @@ import Controlador.GestorMapas;
 import Controlador.InterpreteComandos;
 
 public class Juego implements Renderizador{
-
-	private int nextLevel ;
-	private Scanner teclado;
 	
+	private int nextLevel ;
+	private Scanner teclado;	
 	private PersonajePrincipal personajeA ; // EL Cuyo  
 	private PersonajePrincipal personajeB ;  // La Cuya
 	private ArrayList <PersonajeSecundario> listPersonajesSecundarios ; 
@@ -66,7 +65,8 @@ public class Juego implements Renderizador{
 		 // Prueba 
 		 /*personajeA = new PersonajePrincipal("Brayan", 22,22,2, 2, 'A', true, false) ; 
 		 personajeB = new PersonajePrincipal("Brando", 22,22,3,3, 'A', true, false) ;
-		 ImprimirMapa(mapaActual, personajeA, personajeB);*/		 
+		 ImprimirMapa(mapaActual, personajeA, personajeB);*/
+		 this.iniciarPersonajes();	 	 
 	}
 	public void PerdisteElJuego(){
 		System.out.println("Game Over");	
