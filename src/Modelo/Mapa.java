@@ -16,32 +16,14 @@ public class Mapa  extends JFrame{
 	
 	
 	public Mapa(int indice){		//Inicializa el mapa con caracteres en blanco
-		super("Usando Imagenes"); //Constructor (padre) JFrame
 		
-		//createBufferStrategy(2); //Activar doble buffering 	
 		
 		for(int fil=0;fil<12;fil++){
 			for(int col=0;col<16;col++){
 				mapa[fil][col] = new Celda( fil, col,' ');
 			}
 		}
-		try {
-			switch (indice){
-			case 0:		
-				setImg(ImageIO.read(new File("Pantalla_inicio_cuy.jpg")));// ImageIO permite leer desde file, url entre otros :)	 	       
-				setVisible(true);
-				break;
-			case 1:
-				setImg(ImageIO.read(new File("Pantalla_inicio_cuy.jpg")));
-				break;
-			case 2:
-				setImg(ImageIO.read(new File("Pantalla_inicio_cuy.jpg")));
-				break;
-			}
-		} catch (IOException ex) {
-	            System.out.println("No se pudo leer la imagen");
-	    }
-		setSize(1820,980); //Para dimensionar el tamaño
+
 	}
 	
 	//Carga combinaciones por mapa
