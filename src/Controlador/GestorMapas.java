@@ -17,7 +17,7 @@ public class GestorMapas  {
 			
 		}
 	
-	
+		
 		public void crearMapa(Mapa mapa,int indice)throws IOException{
 			FileReader Lector;
 			File archivo=null;

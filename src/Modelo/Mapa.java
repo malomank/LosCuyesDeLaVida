@@ -16,20 +16,18 @@ public class Mapa  extends JFrame{
 	
 	
 	public Mapa(int indice){		//Inicializa el mapa con caracteres en blanco
-		super("Usando Imagenes"); //Constructor (padre) JFrame
+		super("Mapa " + indice); //Constructor (padre) JFrame
 		
-		//createBufferStrategy(2); //Activar doble buffering 	
-		
+		//createBufferStrategy(2); //Activar doble buffering 			
 		for(int fil=0;fil<12;fil++){
 			for(int col=0;col<16;col++){
 				mapa[fil][col] = new Celda( fil, col,' ');
 			}
-		}
+		}		
 		try {
 			switch (indice){
 			case 0:		
-				setImg(ImageIO.read(new File("Pantalla_inicio_cuy.jpg")));// ImageIO permite leer desde file, url entre otros :)	 	       
-				setVisible(true);
+				setImg(ImageIO.read(new File("Pantalla_inicio_cuy.jpg")));// ImageIO permite leer desde file, url entre otros :)	 	       				
 				break;
 			case 1:
 				setImg(ImageIO.read(new File("Pantalla_inicio_cuy.jpg")));
@@ -41,7 +39,8 @@ public class Mapa  extends JFrame{
 		} catch (IOException ex) {
 	            System.out.println("No se pudo leer la imagen");
 	    }
-		setSize(1820,980); //Para dimensionar el tamaño
+		
+		setSize(500,500); //Para dimensionar el tamaño
 	}
 	
 	//Carga combinaciones por mapa

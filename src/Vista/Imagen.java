@@ -14,7 +14,7 @@ public class Imagen extends JFrame {
 	public Imagen() {
         super("Usando Imagenes"); //Llamamos al Contructor de JFrame
         leerImagen();
-        setSize(1820,980); //Para dimensionar la imagen
+        setSize(1024,764);        //Para dimensionar la imagen
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         createBufferStrategy(2);
