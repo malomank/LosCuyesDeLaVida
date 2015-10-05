@@ -1,10 +1,23 @@
 package Controlador;
 import Modelo.*;
 import java.io.*;
-public class GestorMapas {
 
-	// crea mapa (de la forma que estaba en el proyecto anterior)
-	    
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+public class GestorMapas  {
+		
+		
+	    //Por ahora SOLO carga los mapas
+		public void cargarMapaGrafico(Mapa mapa,int indice)throws IOException{
+			
+		}
+	
+	
 		public void crearMapa(Mapa mapa,int indice)throws IOException{
 			FileReader Lector;
 			File archivo=null;
@@ -14,6 +27,8 @@ public class GestorMapas {
 			BufferedReader br;
 			switch (indice){
 			case 0:
+			
+				
 				fil=0;
 				archivo = new File ("./Mapas/tutorial.txt");
 				Lector=new FileReader(archivo);

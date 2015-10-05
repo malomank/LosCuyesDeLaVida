@@ -1,15 +1,24 @@
 package Vista;
+
 import Modelo.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 import Controlador.GestorMapas;
 import Controlador.InterpreteComandos;
 
-public class Juego implements Renderizador{
+public class Juego extends JFrame implements Renderizador {
 
 	private int nextLevel ;
 	private Scanner teclado;
@@ -42,12 +51,13 @@ public class Juego implements Renderizador{
 		 gestorMapa = new GestorMapas();		 		
 		 
 		 for(int i = 0 ; i <3 ; i++ ){ //Crea los mapas a utilizar
-			 listMapas.add(new Mapa());			 
+			 listMapas.add(new Mapa(i));			 
 		 }	
 		 
 		 int indice = 0 ;
 		 for (Mapa miMapa : listMapas){
 			 try {
+				gestorMapa.cargarMapaGrafico(miMapa, indice);
 				gestorMapa.crearMapa(miMapa, indice);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -58,7 +68,7 @@ public class Juego implements Renderizador{
 			 indice++ ; 
 		 }
 
-		 mapaActual = new Mapa();
+		 mapaActual = new Mapa(4);
 		 //gestorMapa.crearMapa(mapaActual, 0);
 		 mapaActual =  listMapas.get(0);  // puede ser no necesario		 
 		 //	 mapaActual.ImprimirMapa();		 
@@ -127,7 +137,7 @@ public class Juego implements Renderizador{
 			while(true){
 				// Fin de nivel
 				System.out.println("TU VIDA ES" + perA.getVida());
-				if (perA.getPosY() == 15 && perB.getPosY() == 15) break ;
+				if (perA.getPosY() == 15 && perB.getPosY() == 15) break ;				
 				ImprimirMapa(listMapas.get(1), perA, perB);
 				if (perA.getVida() <= 0 ) {
 				PerdisteElJuego();		
@@ -167,6 +177,7 @@ public class Juego implements Renderizador{
 				// Fin de nivel
 				System.out.println("VIDA " + perA.getVida());
 				if (perA.getPosY() == 15 && perB.getPosY() == 15) break ;
+				
 				ImprimirMapa(listMapas.get(0), perA, perB);
 				if (perA.getVida() <= 0 ) {
 				PerdisteElJuego();		
@@ -210,6 +221,8 @@ public class Juego implements Renderizador{
 		
 			teclado = new Scanner(System.in);
 			
+			//new Imagen();
+			
 			System.out.println("Bienvenidos Todos! amiguitos! a este juego kawai!\n\n");
 			System.out.println("1) Nuevo juego");
 			System.out.println("2) Salir\n\n");
@@ -245,9 +258,14 @@ public class Juego implements Renderizador{
 		personajeB = cuy2 ; 
 		
 	}
+	
+	public void actualizarMapa(Mapa mapa,PersonajePrincipal cuy1,PersonajePrincipal cuy2){
+		
+	}
+	
 	public void ImprimirMapa(Mapa mapa, PersonajePrincipal cuy1, PersonajePrincipal cuy2){
 		int flagDuo=0, flagAccA=0, flagAccB=0, flagNuevoEnemigo=0, esp=0;
-		
+		mapa.setVisible(true);
 		for(int fil=0;fil<12;fil++){
 			for(int col=0;col<16;col++){
 				if(mapa.obtenerCaracter(fil,col)==' ') esp++;
@@ -603,6 +621,7 @@ public class Juego implements Renderizador{
 		entrada = teclado.nextLine() ;
 		System.out.println("PUEDES MOVERTE Y CONTINUAR");
 	}
+	
 	
 }
 

@@ -1,18 +1,29 @@
 package Modelo;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
-public class Mapa{
+public class Mapa  extends JFrame{
 	private AccionesEspeciales acciones;
 	private Celda [][] mapa = new Celda[12][16];
 	private int estadoDuo ; 
 	private int contador ; 
+	private BufferedImage img = null; //por si acaso Null :v
 	
-	public Mapa(){		//Inicializa el mapa con caracteres en blanco
+	
+	public Mapa(int indice){		//Inicializa el mapa con caracteres en blanco
+		
+		
 		for(int fil=0;fil<12;fil++){
 			for(int col=0;col<16;col++){
 				mapa[fil][col] = new Celda( fil, col,' ');
 			}
 		}
+
 	}
 	
 	//Carga combinaciones por mapa
@@ -23,7 +34,7 @@ public class Mapa{
 	public void setAccionesDuos(String cadena){
 		this.acciones.setCadenasDuos(cadena);
 	}
-	//funcion 
+	//funcion
 	public void establecerCaracter(int i, int j, char x){
 		mapa[i][j].setCaracter(x);
 	}
@@ -63,6 +74,14 @@ public class Mapa{
 
 	public void setEstadoDuo(int estadoDuo) {
 		this.estadoDuo = estadoDuo;
+	}
+
+	public BufferedImage getImg() {
+		return img;
+	}
+
+	public void setImg(BufferedImage img) {
+		this.img = img;
 	}
 	
 }
