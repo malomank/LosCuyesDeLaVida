@@ -12,13 +12,25 @@ public class Imagen extends JFrame {
 	private BufferedImage img = null; //por si acaso Null :v
 	
 	public Imagen() {
-        super("Usando Imagenes"); //Llamamos al Contructor de JFrame
+		super();
+		configurarVentana();
+		JPanel panel1 = new JPanel();
+
         leerImagen();
         setSize(1820,980); //Para dimensionar la imagen
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         createBufferStrategy(2);
    }
+	
+	public void configurarVentana(){
+		this.setTitle("Esta Es Una Ventana");                   // colocamos titulo a la ventana
+        this.setSize(310, 210);                                 // colocamos tamanio a la ventana (ancho, alto)
+        this.setLocationRelativeTo(null);                       // centramos la ventana en la pantalla
+        this.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
+        this.setResizable(false);                               // hacemos que la ventana no sea redimiensionable
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 	
 	public void leerImagen(){
 
