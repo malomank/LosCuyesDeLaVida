@@ -21,8 +21,7 @@ import Controlador.InterpreteComandos;
 public class Juego extends JFrame implements Renderizador {
 
 	private int nextLevel ;
-	private Scanner teclado;
-	
+	private Scanner teclado;	
 	private PersonajePrincipal personajeA ; // EL Cuyo  
 	private PersonajePrincipal personajeB ;  // La Cuya
 	private ArrayList <PersonajeSecundario> listPersonajesSecundarios ; 
