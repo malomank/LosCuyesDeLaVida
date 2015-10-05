@@ -6,32 +6,65 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.Graphics;
 
 public class Imagen extends JFrame {
 	
-	private BufferedImage img = null; //por si acaso Null :v
+	private BufferedImage img=null; //por si acaso Null :v
+	private JFrame pantalla;
+	private JPanel panel;
 	
 	public Imagen() {
-		super();
-		configurarVentana();
-		JPanel panel1 = new JPanel();
 
-        leerImagen();
-        setSize(1820,980); //Para dimensionar la imagen
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        createBufferStrategy(2);
+		pantalla = new JFrame("Los Cuyes de la vida");
+		pantalla.setLayout(null);
+		pantalla.setBounds(110, 430, 90,20);
+		
+		 try {
+	            img = ImageIO.read(new File("Pantalla_inicio_cuy.jpg"));  // ImageIO permite leer desde file, url entre otros :)
+	            
+		 } catch (IOException ex) {
+	            System.out.println("No se pudo leer la imagen");
+	     }
+		Container pane = pantalla.getContentPane();
+		ColorPanel panel = new ColorPanel(img);
+		pantalla.setVisible(true);
+		 
+		 
+	//	configurarVentana();
+		pantalla.setSize(1020,890);
+		
+		
+		
+		
+		pantalla.add(panel);
+	
+		panel.setBounds(240,10, 400,250);
+		panel.setVisible(true);
+		
+		pantalla.setSize(800, 600);                                 // colocamos tamanio a la ventana (ancho, alto)
+		pantalla.setLocationRelativeTo(null);                       // centramos la ventana en la pantalla
+		pantalla.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
+		pantalla.setResizable(false);    
+		pantalla.setVisible(true);		
+		pantalla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+        //leerImagen();
+       // setSize(1820,980); //Para dimensionar la imagen
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setVisible(true);
+        //createBufferStrategy(2);
    }
 	
-	public void configurarVentana(){
+/*	public void configurarVentana(){
 		this.setTitle("Esta Es Una Ventana");                   // colocamos titulo a la ventana
         this.setSize(310, 210);                                 // colocamos tamanio a la ventana (ancho, alto)
         this.setLocationRelativeTo(null);                       // centramos la ventana en la pantalla
         this.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
         this.setResizable(false);                               // hacemos que la ventana no sea redimiensionable
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
+	}*/
+
 	public void leerImagen(){
 
         try {
@@ -41,11 +74,22 @@ public class Imagen extends JFrame {
         }
         
     }
-	
-	 public void paint(Graphics g){
-	        g.drawImage(img, 10, 20,getWidth()-10, getHeight()-10, null); //Esto es tipo C# :)
+
+	public void paint(){
+		
 	}
-
-
+	
+	class ColorPanel extends JPanel{
+		BufferedImage theCat;
+		public ColorPanel(BufferedImage image){
+		theCat = image;
+		}
+	 
+		public void paintComponent(Graphics g){
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D) g;
+			g2d.drawImage(theCat, null, 50,50);
+		}
+	}
 	    
 }

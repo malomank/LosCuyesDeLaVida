@@ -221,7 +221,7 @@ public class Juego extends JFrame implements Renderizador {
 		
 			teclado = new Scanner(System.in);
 			
-			//new Imagen();
+			new Imagen2();
 			
 			System.out.println("Bienvenidos Todos! amiguitos! a este juego kawai!\n\n");
 			System.out.println("1) Nuevo juego");
