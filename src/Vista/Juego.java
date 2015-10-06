@@ -1,5 +1,6 @@
 package Vista;
 import Modelo.*;
+import Ventanas.Vent_MenuPrincipal;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class Juego implements Renderizador{
 	private GestorMapas gestorMapa ;
 	private InterpreteComandos interpreteComando ; 
 	private Mapa  mapaActual ; 
+    private Vent_MenuPrincipal ven ; 
 	
 	public void FinDelJuego(){
 		System.out.println("Felicitaciones, eres el mejor. Terminaste el juego Mi estimado LOL by --BrayanRP");		
@@ -66,7 +68,9 @@ public class Juego implements Renderizador{
 		 /*personajeA = new PersonajePrincipal("Brayan", 22,22,2, 2, 'A', true, false) ; 
 		 personajeB = new PersonajePrincipal("Brando", 22,22,3,3, 'A', true, false) ;
 		 ImprimirMapa(mapaActual, personajeA, personajeB);*/
-		 this.iniciarPersonajes();	 	 
+		 this.iniciarPersonajes();	 		 
+		 
+		 
 	}
 	public void PerdisteElJuego(){
 		System.out.println("Game Over");	

@@ -8,16 +8,8 @@ import java.awt.*;
 
 public class Principal {
 
-	public static void main(String[] args) {
-		
- 	   //Juego nuevoJuego = new Juego(10, 50,40) ; 	    	   
- 	   //UUnuevoJuego.iniciarPersonajes(); 
- 	   //nuevoJuego.PantallaInicial();
+	public static void main(String[] args) {		
 		Vent_MenuPrincipal vm1 = new Vent_MenuPrincipal() ;
-		
-		 
-
-		
-			}
-	
+		Juego juego = new Juego( 10,40,40) ;
+	}	
 }
