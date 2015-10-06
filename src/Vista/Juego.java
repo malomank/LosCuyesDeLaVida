@@ -243,6 +243,7 @@ public class Juego implements Renderizador{
  	    
 		personajeA = cuy1  ; //Xq igualamos aquí? si igual nunca usamos personajeA ni personajeB
 		personajeB = cuy2 ; 
+		Imagen img=new Imagen();
 		
 	}
 	public void ImprimirMapa(Mapa mapa, PersonajePrincipal cuy1, PersonajePrincipal cuy2){

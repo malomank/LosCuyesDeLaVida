@@ -8,16 +8,23 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Imagen extends JFrame {
-	
+	//se define imagen para cargar lo que se va a mostrar y se crean 2 paneles
+	//que serviran de contenedor para las dos partes de la pantalla(mapa y
+	//barra de informacion)
 	private BufferedImage img = null; //por si acaso Null :v
+	private JPanel panel1=new JPanel();
+	private JPanel panel2=new JPanel();
 	
 	public Imagen() {
 		super();
+		//aqui se setean las propiedades de los contenedores
+		panel1.setSize(1024, 768);
+		panel2.setSize(276, 768);
+		panel1.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel2.setBorder(BorderFactory.createLineBorder(Color.blue));
 		configurarVentana();
-		JPanel panel1 = new JPanel();
-
         leerImagen();
-        setSize(1820,980); //Para dimensionar la imagen
+        setSize(1300,768); //Para dimensionar la imagen(ventana)
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         createBufferStrategy(2);
@@ -30,22 +37,27 @@ public class Imagen extends JFrame {
         this.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
         this.setResizable(false);                               // hacemos que la ventana no sea redimiensionable
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container cp=this.getContentPane();
+        //cp.setLayout(new BorderLayout());
+        //se agregan los paneles a la ventana
+        add(panel1);
+        add(panel2);
+        
 	}
 	
 	public void leerImagen(){
-
+		//este metodo carga la imagen de memoria
+		//y la pone en uno de los contenedores
         try {
-            img = ImageIO.read(new File("Pantalla_inicio_cuy.jpg"));  // ImageIO permite leer desde file, url entre otros :)
+            img = ImageIO.read(new File("cuy_1024x768.jpg"));
+            // ImageIO permite leer desde file, url entre otros :)
+            panel1.add(new JLabel(new ImageIcon(img)));
+            
         } catch (IOException ex) {
             System.out.println("No se pudo leer la imagen");
         }
         
     }
 	
-	 public void paint(Graphics g){
-	        g.drawImage(img, 10, 20,getWidth()-10, getHeight()-10, null); //Esto es tipo C# :)
-	}
-
-
 	    
 }
