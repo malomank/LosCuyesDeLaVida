@@ -18,7 +18,7 @@ public class Imagen extends JFrame {
 
 		pantalla = new JFrame("Los Cuyes de la vida");
 		pantalla.setLayout(null);
-		pantalla.setBounds(110, 430, 90,20);
+		pantalla.setBounds(110, 430, 110,120);
 		
 		 try {
 	            img = ImageIO.read(new File("Pantalla_inicio_cuy.jpg"));  // ImageIO permite leer desde file, url entre otros :)
@@ -39,7 +39,7 @@ public class Imagen extends JFrame {
 		
 		pantalla.add(panel);
 	
-		panel.setBounds(240,10, 400,250);
+		panel.setBounds(10,10, 600,250);
 		panel.setVisible(true);
 		
 		pantalla.setSize(800, 600);                                 // colocamos tamanio a la ventana (ancho, alto)
