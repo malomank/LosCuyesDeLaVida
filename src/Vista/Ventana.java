@@ -5,19 +5,25 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
+import Control.Teclado;
+
 public class Ventana extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
-	private static final int ANCHO = 800;
-	private static final int ALTO = 600;
+	private static final int ANCHO = 1024;
+	private static final int ALTO = 768;
 	private static final String NOMBRE = "Juego";
 	private static JFrame pantalla;	
 	private static Thread thread;
 	private static volatile boolean enFuncionamiento = false; //volatile no permite que sea utilizado por los 2 threads (MUTEX)
+	private static Teclado teclado;
 	//Probar que funciona actualizaciones
 	private static int aps = 0;
 	private static int fps = 0;
 	
 	public Ventana() {
+		
+		teclado = new Teclado();
+		addKeyListener(teclado);
 		setPreferredSize(new Dimension(ANCHO,ALTO));
 		pantalla = new JFrame(NOMBRE);
 		pantalla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,6 +53,21 @@ public class Ventana extends Canvas implements Runnable{
 	}
 	
 	private void actualizar(){
+		teclado.actualizar();
+		
+		if(teclado.arriba){
+			System.out.println("arriba");
+		}
+		if(teclado.abajo){
+			System.out.println("abajo");
+		}
+		if(teclado.derecha){
+			System.out.println("derecha");
+		}
+		if(teclado.izquierda){
+			System.out.println("izquierda");
+		}
+		
 		//Probar que funciona actualizaciones
 		aps++;
 	}
@@ -68,6 +89,8 @@ public class Ventana extends Canvas implements Runnable{
 		
 		double tiempoTranscurrido;
 		double delta = 0;
+		
+		requestFocus();
 		
 		while(enFuncionamiento){
 			final long inicioBucle = System.nanoTime();

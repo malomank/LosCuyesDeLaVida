@@ -18,8 +18,10 @@ import javax.swing.*;
 import Controlador.GestorMapas;
 import Controlador.InterpreteComandos;
 
-public class Juego extends JFrame implements Renderizador {
+public class Juego extends VentanaJuego implements Renderizador {
 
+	
+	
 	private int nextLevel ;
 	private Scanner teclado;	
 	private PersonajePrincipal personajeA ; // EL Cuyo  
@@ -42,6 +44,9 @@ public class Juego extends JFrame implements Renderizador {
 	}
 
 	public Juego(int numeroMapas , int numerosDeObjetos , int numPersSecund){
+		
+		//Crear ventana
+		
 		 nextLevel =  0  ;
 		 listObjetos  = new  ArrayList <Objeto>(numerosDeObjetos) ; 
 		 listPersonajesSecundarios = new ArrayList <PersonajeSecundario>(numPersSecund) ;
