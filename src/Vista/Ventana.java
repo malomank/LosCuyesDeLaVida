@@ -117,7 +117,7 @@ public class Ventana extends JFrame {
 		//este metodo carga la imagen de memoria
 		//y la pone en uno de los contenedores
         try {
-            img = ImageIO.read(new File("Pantalla_inicio_cuy.jpg"));
+            img = ImageIO.read(new File("barra_lateral.jpg"));
             // ImageIO permite leer desde file, url entre otros :)
             panel2.add(new JLabel(new ImageIcon(img)));
             
