@@ -131,7 +131,7 @@ public class Juego extends JFrame implements Renderizador{
 		//y la pone en uno de los contenedores
 
         try {
-            img = ImageIO.read(new File("pantalla_inicio.jpg"));
+            img = ImageIO.read(new File("cuy_1024x768.jpg"));
             // ImageIO permite leer desde file, url entre otros :)
             //canvas.drawImage(img,0,0);
             panel1.add(new JLabel(new ImageIcon(img)));
@@ -264,12 +264,13 @@ public class Juego extends JFrame implements Renderizador{
 		}
 	}
 	public void Historia_1(PersonajePrincipal perA , PersonajePrincipal perB)	{		
-		String linea ; 
-		System.out.println("Bienvenido a Historia1 ");
-		System.out.println("Cristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
-		System.out.println("( cualquier numero y enter para continuar )");
-		linea = teclado.next();
-		Tutorial(perA , perB);			
+		//String linea ; 
+		JOptionPane.showMessageDialog(null,"Bienvenido a Historia1\nCristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
+		//System.out.println("Bienvenido a Historia1 ");
+		//System.out.println("Cristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
+		//System.out.println("( cualquier numero y enter para continuar )");
+		//linea = teclado.next();
+		//Tutorial(perA , perB);			
 		
 	}
 	public void NuevoJuego(PersonajePrincipal perA, PersonajePrincipal perB){
@@ -281,6 +282,7 @@ public class Juego extends JFrame implements Renderizador{
 	}
 	
 	public void ConfigurarTutorial(){
+		Historia_1(this.personajeA, this.personajeB);
 		panel1.removeAll();
 		remove(panel1);
 		//aqui se setean las propiedades de los contenedores
@@ -343,7 +345,9 @@ public class Juego extends JFrame implements Renderizador{
 				if(e.getX() >= 80 && e.getX() <= 248){
 					if (e.getY() >= 300 && e.getY() <= 360 ){
 						//Configurar para tutorial 1 e iniciar juego
+						
 						ConfigurarTutorial();
+						
 					}
 					if (e.getY() >= 400 && e.getY() <= 460 ){
 						//Configurar para cargar partida
