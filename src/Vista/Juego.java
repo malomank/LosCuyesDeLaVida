@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -263,6 +264,7 @@ public class Juego extends JFrame implements Renderizador{
 			PerdisteElJuego();			 
 		}
 	}
+	
 	public void Historia_1(PersonajePrincipal perA , PersonajePrincipal perB)	{		
 		//String linea ; 
 		JOptionPane.showMessageDialog(null,"Bienvenido a Historia1\nCristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
@@ -282,6 +284,7 @@ public class Juego extends JFrame implements Renderizador{
 	}
 	
 	public void ConfigurarTutorial(){
+		
 		Historia_1(this.personajeA, this.personajeB);
 		panel1.removeAll();
 		remove(panel1);
@@ -302,7 +305,6 @@ public class Juego extends JFrame implements Renderizador{
         }
 		add(panelTutorial);
 		add(panel2,BorderLayout.EAST);
-
 		setVisible(true);
 	}
 	
