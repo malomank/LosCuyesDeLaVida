@@ -9,7 +9,7 @@ public class Principal {
 		
  	    Juego nuevoJuego = new Juego(10, 50,40) ; 
  	    nuevoJuego.iniciarPersonajes();
- 	    nuevoJuego.PantallaInicial(); 	    	    		
+ 	    //nuevoJuego.PantallaInicial(); 	    	    		
 	}
 	
 }

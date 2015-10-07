@@ -29,6 +29,7 @@ public class Ventana extends JFrame {
 				if(e.getX() >= 80 && e.getX() <= 248){
 					if (e.getY() >= 300 && e.getY() <= 360 ){
 						//ingresa al juego
+						//NuevoJuego(personajeA , personajeB);
 						ventanaNivel();
 					}
 					if (e.getY() >= 400 && e.getY() <= 460 ){
@@ -104,7 +105,7 @@ public class Ventana extends JFrame {
 		//este metodo carga la imagen de memoria
 		//y la pone en uno de los contenedores
         try {
-            img = ImageIO.read(new File("cuy_1024x768.jpg"));
+            img = ImageIO.read(new File("mapa_tutorial.jpg"));
             // ImageIO permite leer desde file, url entre otros :)
             panel1.add(new JLabel(new ImageIcon(img)));
             
