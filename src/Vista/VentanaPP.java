@@ -7,13 +7,10 @@ public class VentanaPP extends JFrame{
 	Container cp ;
 	JPanel p1 , p2 ; 
 	public VentanaPP(){
-		
+		cp = getContentPane();
 		this.setLayout(null);
 		this.setSize(500,500);
-		
-		
-		cp = getContentPane();
-
+						
 		// Panel 1 
 		p1  = new JPanel() ;
 		p1.setBounds(0, 0, 250, 250);
