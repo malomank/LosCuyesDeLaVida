@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class Ventana extends JFrame {
 	//se define imagen para cargar lo que se va a mostrar y se crean 2 paneles
@@ -23,17 +24,23 @@ public class Ventana extends JFrame {
 		this.add(panel,BorderLayout.CENTER);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.addMouseListener(new mouseClicked);
+		this.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e){
+				
+				ventanaNivel();
+			}
+		});
 	}
-	public void VentanaNivel() {
+	public void ventanaNivel() {
 		//aqui se setean las propiedades de los contenedores
+		panel.removeAll();
 		panel1.setSize(1024, 768);
 		panel2.setSize(276, 768);
 		panel1.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel2.setBorder(BorderFactory.createLineBorder(Color.blue));
-		configurarVentana();
         leerImagen2();
-        setSize(1300,768); //Para dimensionar la imagen(ventana)
+        leerImagen3();
+        configurarVentana();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         createBufferStrategy(2);
@@ -41,12 +48,14 @@ public class Ventana extends JFrame {
 		
 	
 	public void configurarVentana(){
-		this.setTitle("Tutorial");                   // colocamos titulo a la ventana                                 
+		this.setTitle("Tutorial");     
+		this.setSize(1300,768);                                 
         this.setLocationRelativeTo(null);                      
-        this.setResizable(false);                               // hacemos que la ventana no sea redimiensionable
+        this.setResizable(false);                               
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.remove(panel);
         add(panel1,BorderLayout.CENTER);
-        add(panel2,BorderLayout.CENTER);
+        add(panel2,BorderLayout.EAST);
         
 	}
 	
@@ -54,7 +63,7 @@ public class Ventana extends JFrame {
 		//este metodo carga la imagen de memoria
 		//y la pone en uno de los contenedores
         try {
-            img = ImageIO.read(new File("cuy_1024x768.jpg"));
+            img = ImageIO.read(new File("Pantalla_Inicio.jpg"));
             // ImageIO permite leer desde file, url entre otros :)
             panel.add(new JLabel(new ImageIcon(img)));
             
@@ -76,5 +85,17 @@ public class Ventana extends JFrame {
         }
         
     }
-	    
+	public void leerImagen3(){
+		//este metodo carga la imagen de memoria
+		//y la pone en uno de los contenedores
+        try {
+            img = ImageIO.read(new File("Pantalla_inicio_cuy.jpg"));
+            // ImageIO permite leer desde file, url entre otros :)
+            panel2.add(new JLabel(new ImageIcon(img)));
+            
+        } catch (IOException ex) {
+            System.out.println("No se pudo leer la imagen");
+        }
+        
+    }
 }
