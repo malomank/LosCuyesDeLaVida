@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Imagen extends JFrame {
+public class Ventana extends JFrame {
 	//se define imagen para cargar lo que se va a mostrar y se crean 2 paneles
 	//que serviran de contenedor para las dos partes de la pantalla(mapa y
 	//barra de informacion)
@@ -15,7 +15,7 @@ public class Imagen extends JFrame {
 	private JPanel panel1=new JPanel();
 	private JPanel panel2=new JPanel();
 	
-	public Imagen() {
+	public Ventana() {
 		super();
 		//aqui se setean las propiedades de los contenedores
 		panel1.setSize(1024, 768);
@@ -29,6 +29,7 @@ public class Imagen extends JFrame {
         setVisible(true);
         createBufferStrategy(2);
    }
+		
 	
 	public void configurarVentana(){
 		this.setTitle("Esta Es Una Ventana");                   // colocamos titulo a la ventana
