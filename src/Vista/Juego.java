@@ -22,6 +22,7 @@ public class Juego implements Renderizador{
 	private GestorMapas gestorMapa ;
 	private InterpreteComandos interpreteComando ; 
 	private Mapa  mapaActual ; 
+	private Ventana ventanaJuego;
 	
 	public void FinDelJuego(){
 		System.out.println("Felicitaciones, eres el mejor. Terminaste el juego Mi estimado LOL by --BrayanRP");		
@@ -205,7 +206,8 @@ public class Juego implements Renderizador{
 		
 		int opcion;
 		int salida = 0;
-		
+		//aqui al iniciar el juego carga la pantalla de inicio
+		ventanaJuego=new Ventana();
 		while(true){
 		
 			teclado = new Scanner(System.in);

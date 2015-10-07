@@ -12,18 +12,27 @@ public class Ventana extends JFrame {
 	//que serviran de contenedor para las dos partes de la pantalla(mapa y
 	//barra de informacion)
 	private BufferedImage img = null; //por si acaso Null :v
+	private JPanel panel=new JPanel(); //panel para la primera ventana de bienvenida
 	private JPanel panel1=new JPanel();
 	private JPanel panel2=new JPanel();
-	
-	public Ventana() {
-		super();
+	public Ventana(){
+		//imprime la ventana de bienvenida del juego
+		this.setTitle("Pequeño y valiente Cristobal");
+		this.setSize(1300, 768);
+		leerImagen();
+		this.add(panel,BorderLayout.CENTER);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.addMouseListener(new mouseClicked);
+	}
+	public void VentanaNivel() {
 		//aqui se setean las propiedades de los contenedores
 		panel1.setSize(1024, 768);
 		panel2.setSize(276, 768);
 		panel1.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel2.setBorder(BorderFactory.createLineBorder(Color.blue));
 		configurarVentana();
-        leerImagen();
+        leerImagen2();
         setSize(1300,768); //Para dimensionar la imagen(ventana)
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -32,21 +41,29 @@ public class Ventana extends JFrame {
 		
 	
 	public void configurarVentana(){
-		this.setTitle("Esta Es Una Ventana");                   // colocamos titulo a la ventana
-        this.setSize(310, 210);                                 // colocamos tamanio a la ventana (ancho, alto)
-        this.setLocationRelativeTo(null);                       // centramos la ventana en la pantalla
-        this.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
+		this.setTitle("Tutorial");                   // colocamos titulo a la ventana                                 
+        this.setLocationRelativeTo(null);                      
         this.setResizable(false);                               // hacemos que la ventana no sea redimiensionable
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Container cp=this.getContentPane();
-        //cp.setLayout(new BorderLayout());
-        //se agregan los paneles a la ventana
-        add(panel1);
-        add(panel2);
+        add(panel1,BorderLayout.CENTER);
+        add(panel2,BorderLayout.CENTER);
         
 	}
 	
 	public void leerImagen(){
+		//este metodo carga la imagen de memoria
+		//y la pone en uno de los contenedores
+        try {
+            img = ImageIO.read(new File("cuy_1024x768.jpg"));
+            // ImageIO permite leer desde file, url entre otros :)
+            panel.add(new JLabel(new ImageIcon(img)));
+            
+        } catch (IOException ex) {
+            System.out.println("No se pudo leer la imagen");
+        }
+        
+    }
+	public void leerImagen2(){
 		//este metodo carga la imagen de memoria
 		//y la pone en uno de los contenedores
         try {
@@ -59,6 +76,5 @@ public class Ventana extends JFrame {
         }
         
     }
-	
 	    
 }
