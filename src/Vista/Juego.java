@@ -30,10 +30,10 @@ import Controlador.InterpreteComandos;
 public class Juego extends JFrame implements Renderizador{
 
 	//Ventanas
-	private BufferedImage img = null; //por si acaso Null :v
+	private BufferedImage img2, img = null; //por si acaso Null :v
 	private JPanel panel1=new JPanel();
 	private JPanel panel2=new JPanel();
-	private JPanel panel=new JPanel();
+	private JPanel panelTutorial=new JPanel();
 	boolean dibujoListo;
 	//String mensaje = "Cargando imagen ...";
 	private BufferStrategy bufferStrategy;
@@ -61,48 +61,7 @@ public class Juego extends JFrame implements Renderizador{
 	}
 
 	public Juego(int numeroMapas , int numerosDeObjetos , int numPersSecund){
-		this.setTitle("Pequeño y valiente Cristobal");
-		this.setSize(1300, 768);
-		leerImagen();
-		this.add(panel,BorderLayout.CENTER);
-		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				if(e.getX() >= 80 && e.getX() <= 248){
-					if (e.getY() >= 300 && e.getY() <= 360 ){
-						//ingresa al juego
-						NuevoJuego(personajeA , personajeB);
-						
-					}
-					if (e.getY() >= 400 && e.getY() <= 460 ){
-						//Configurar para cargar partida
-					}
-					if (e.getY() >= 500 && e.getY() <= 560 ){
-						//Configurar para Salir
-						String[] opciones = {"Si", "No"};
-						 
-				        int opcion = JOptionPane.showOptionDialog(
-				                               null                             //componente
-				                             , "¿Desea salir del juego?"            // Mensaje
-				                             , "Salida del juego"         // Titulo en la barra del cuadro
-				                             , JOptionPane.DEFAULT_OPTION       // Tipo de opciones
-				                             , JOptionPane.INFORMATION_MESSAGE  // Tipo de mensaje (icono)
-				                             , null                             // Icono (ninguno)
-				                             , opciones                         // Opciones personalizadas
-				                             , null                             // Opcion por defecto
-				                           );
-				        if(opcion == 0){ //salir
-				        	System.exit(0);
-				        }
-				        else
-				        	JOptionPane.getRootFrame().dispose();   
-				        	//JOptionPane.dispose();
-					}					
-				}
-			}
-		});
-		/*
+		
 		//Crear ventana
 		setSize(1300,768); //Para dimensionar la imagen(ventana)
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,8 +76,6 @@ public class Juego extends JFrame implements Renderizador{
         bufferStrategy = getBufferStrategy();
 
 		// fin crear ventana
-		 * 
-		 */
 		 nextLevel =  0  ;
 		 listObjetos  = new  ArrayList <Objeto>(numerosDeObjetos) ; 
 		 listPersonajesSecundarios = new ArrayList <PersonajeSecundario>(numPersSecund) ;
@@ -154,30 +111,18 @@ public class Juego extends JFrame implements Renderizador{
 		 ImprimirMapa(mapaActual, personajeA, personajeB);*/		 
 	}
 	// VENTANAS
-	public void ventanaNivel() {
-		//aqui se setean las propiedades de los contenedores
-		panel.removeAll();
-		panel1.setSize(1024, 768);
-		panel2.setSize(276, 768);
-		panel1.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel2.setBorder(BorderFactory.createLineBorder(Color.blue));
-        leerImagen2();
-        leerImagen3();
-        configurarVentana();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        createBufferStrategy(2);
-   }
-	
 	public void configurarVentana(){
-		this.setTitle("Tutorial");     
-		this.setSize(1300,768);                                 
-        this.setLocationRelativeTo(null);                      
-        this.setResizable(false);                               
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.remove(panel);
+		//this.setSize(310, 210);                                 // colocamos tamanio a la ventana (ancho, alto)
+        this.setLocationRelativeTo(null);                       // centramos la ventana en la pantalla
+        this.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
+        this.setResizable(true);                               // hacemos que la ventana no sea redimiensionable
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container cp=this.getContentPane();
+        cp.setLayout(new BorderLayout());
+        
+        //se agregan los paneles a la ventana
         add(panel1,BorderLayout.CENTER);
-        add(panel2,BorderLayout.EAST);
+        add(panel2);
         
 	}
 	
@@ -186,36 +131,10 @@ public class Juego extends JFrame implements Renderizador{
 		//y la pone en uno de los contenedores
 
         try {
-            img = ImageIO.read(new File("Pantalla_Inicio.jpg"));
+            img = ImageIO.read(new File("pantalla_inicio.jpg"));
             // ImageIO permite leer desde file, url entre otros :)
             //canvas.drawImage(img,0,0);
-            panel.add(new JLabel(new ImageIcon(img)));
-            
-        } catch (IOException ex) {
-            System.out.println("No se pudo leer la imagen");
-        }
-        
-    }
-	public void leerImagen2(){
-		//este metodo carga la imagen de memoria
-		//y la pone en uno de los contenedores
-        try {
-            img = ImageIO.read(new File("mapa_tutorial.jpg"));
-            // ImageIO permite leer desde file, url entre otros :)
             panel1.add(new JLabel(new ImageIcon(img)));
-            
-        } catch (IOException ex) {
-            System.out.println("No se pudo leer la imagen");
-        }
-        
-    }
-	public void leerImagen3(){
-		//este metodo carga la imagen de memoria
-		//y la pone en uno de los contenedores
-        try {
-            img = ImageIO.read(new File("barra_lateral.jpg"));
-            // ImageIO permite leer desde file, url entre otros :)
-            panel2.add(new JLabel(new ImageIcon(img)));
             
         } catch (IOException ex) {
             System.out.println("No se pudo leer la imagen");
@@ -320,7 +239,6 @@ public class Juego extends JFrame implements Renderizador{
 		System.out.println("");
 		System.out.println("Al llegar a D, aparecera los comandos que debe presionar\nLuego dar enter para activar la acción especial");
 		System.out.println("Cualquier numero y enter para continuar ");
-		ventanaNivel();
 		entero = teclado.nextInt();
 		if(entero != nextLevel){
 			while(true){
@@ -347,21 +265,45 @@ public class Juego extends JFrame implements Renderizador{
 	}
 	public void Historia_1(PersonajePrincipal perA , PersonajePrincipal perB)	{		
 		String linea ; 
-		JOptionPane.showMessageDialog(null,"Bienvenido a Historia1\nCristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.\n");
-		//System.out.println("Bienvenido a Historia1 ");
-		//System.out.println("Cristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
-		//System.out.println("( cualquier numero y enter para continuar )");
-		//linea = teclado.next();
+		System.out.println("Bienvenido a Historia1 ");
+		System.out.println("Cristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
+		System.out.println("( cualquier numero y enter para continuar )");
+		linea = teclado.next();
 		Tutorial(perA , perB);			
 		
 	}
 	public void NuevoJuego(PersonajePrincipal perA, PersonajePrincipal perB){
-		//String linea;
-		//System.out.println("Escriba su nombre: ");
-		//linea = teclado.next();	
-		//System.out.println("Wecome to my world my friend " + linea);
+		String linea;
+		System.out.println("Escriba su nombre: ");
+		linea = teclado.next();	
+		System.out.println("Wecome to my world my friend " + linea);
 		Historia_1(perA ,perB);
 	}
+	
+	public void ConfigurarTutorial(){
+		panel1.removeAll();
+		remove(panel1);
+		//aqui se setean las propiedades de los contenedores
+		panelTutorial.setSize(1024, 768);
+		panel2.setSize(276, 768);
+		panelTutorial.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
+		panel2.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
+		try {
+            img = ImageIO.read(new File("mapa_tutorial.jpg"));
+            img2 = ImageIO.read(new File("barra_lateral.jpg"));
+            // ImageIO permite leer desde file, url entre otros :)
+            panelTutorial.add(new JLabel(new ImageIcon(img)));
+            panel2.add(new JLabel(new ImageIcon(img2)));
+            
+        } catch (IOException ex) {
+            System.out.println("No se pudo leer la imagen");
+        }
+		add(panelTutorial);
+		add(panel2,BorderLayout.EAST);
+
+		setVisible(true);
+	}
+	
 	public void PantallaInicial(){
 		
 		//aqui se setean las propiedades de los contenedores
@@ -385,7 +327,7 @@ public class Juego extends JFrame implements Renderizador{
 		//y la pone en uno de los contenedores
 
         try {
-            img = ImageIO.read(new File("cuy_1300x768.jpg"));
+            img = ImageIO.read(new File("pantalla_inicio.jpg"));
             // ImageIO permite leer desde file, url entre otros :)
             panel1.add(new JLabel(new ImageIcon(img)));
             
@@ -401,28 +343,7 @@ public class Juego extends JFrame implements Renderizador{
 				if(e.getX() >= 80 && e.getX() <= 248){
 					if (e.getY() >= 300 && e.getY() <= 360 ){
 						//Configurar para tutorial 1 e iniciar juego
-						/*
-						 * 
-						 */
-						panel1.removeAll();
-						
-						//aqui se setean las propiedades de los contenedores
-						panel1.setSize(1024, 768);
-						panel2.setSize(276, 768);
-						panel1.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
-						panel2.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
-						try {
-				            img = ImageIO.read(new File("cuy_1024x768.jpg"));
-				            // ImageIO permite leer desde file, url entre otros :)
-				            panel1.add(new JLabel(new ImageIcon(img)));
-				            
-				        } catch (IOException ex) {
-				            System.out.println("No se pudo leer la imagen");
-				        }
-						add(panel1);
-						add(panel2);
-
-						setVisible(true);
+						ConfigurarTutorial();
 					}
 					if (e.getY() >= 400 && e.getY() <= 460 ){
 						//Configurar para cargar partida
