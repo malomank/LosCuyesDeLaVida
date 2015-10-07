@@ -24,10 +24,38 @@ public class Ventana extends JFrame {
 		this.add(panel,BorderLayout.CENTER);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.addMouseListener(new MouseAdapter(){
-			public void mousePressed(MouseEvent e){
-				
-				ventanaNivel();
+		panel.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				if(e.getX() >= 80 && e.getX() <= 248){
+					if (e.getY() >= 300 && e.getY() <= 360 ){
+						//ingresa al juego
+						ventanaNivel();
+					}
+					if (e.getY() >= 400 && e.getY() <= 460 ){
+						//Configurar para cargar partida
+					}
+					if (e.getY() >= 500 && e.getY() <= 560 ){
+						//Configurar para Salir
+						String[] opciones = {"Si", "No"};
+						 
+				        int opcion = JOptionPane.showOptionDialog(
+				                               null                             //componente
+				                             , "¿Desea salir del juego?"            // Mensaje
+				                             , "Salida del juego"         // Titulo en la barra del cuadro
+				                             , JOptionPane.DEFAULT_OPTION       // Tipo de opciones
+				                             , JOptionPane.INFORMATION_MESSAGE  // Tipo de mensaje (icono)
+				                             , null                             // Icono (ninguno)
+				                             , opciones                         // Opciones personalizadas
+				                             , null                             // Opcion por defecto
+				                           );
+				        if(opcion == 0){ //salir
+				        	System.exit(0);
+				        }
+				        else
+				        	JOptionPane.getRootFrame().dispose();   
+				        	//JOptionPane.dispose();
+					}					
+				}
 			}
 		});
 	}
