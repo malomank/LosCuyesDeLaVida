@@ -1,19 +1,47 @@
 package Vista;
 import Modelo.*;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Controlador.GestorMapas;
 import Controlador.InterpreteComandos;
 
-public class Juego implements Renderizador{
 
-	private int nextLevel ;
-	private Scanner teclado;
+//public class Juego extends VentanaJuego implements Renderizador {
+
+public class Juego extends JFrame implements Renderizador{
+
+	//Ventanas
+	private BufferedImage img2, img = null; //por si acaso Null :v
+	private JPanel panel1=new JPanel();
+	private JPanel panel2=new JPanel();
+	private JPanel panelTutorial=new JPanel();
+	boolean dibujoListo;
+	//String mensaje = "Cargando imagen ...";
+	private BufferStrategy bufferStrategy;
 	
+	// cerrar ventanas
+	private int nextLevel ;
+	private Scanner teclado;	
 	private PersonajePrincipal personajeA ; // EL Cuyo  
 	private PersonajePrincipal personajeB ;  // La Cuya
 	private ArrayList <PersonajeSecundario> listPersonajesSecundarios ; 
@@ -21,7 +49,7 @@ public class Juego implements Renderizador{
 	private ArrayList <Mapa> listMapas ; 
 	private GestorMapas gestorMapa ;
 	private InterpreteComandos interpreteComando ; 
-	private Mapa  mapaActual ; 
+	private Mapa mapaActual ; 
 	
 	public void FinDelJuego(){
 		System.out.println("Felicitaciones, eres el mejor. Terminaste el juego Mi estimado LOL by --BrayanRP");		
@@ -34,6 +62,21 @@ public class Juego implements Renderizador{
 	}
 
 	public Juego(int numeroMapas , int numerosDeObjetos , int numPersSecund){
+		
+		//Crear ventana
+		setSize(1300,768); //Para dimensionar la imagen(ventana)
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("El Pequeño y Valiente Cristobal");                   // colocamos titulo a la ventana
+        
+		//Deben cargarse las imágenes antes de mostrar la ventana
+		setVisible(true);
+		//Antes de crear la estrategia se debe hacer visible la ventana
+		createBufferStrategy(2);
+		//La estrategia se debe obtener una vez creada para poder usarla
+		//en el paint. Si se obtiene en el paint se producirá parpadeo
+        bufferStrategy = getBufferStrategy();
+
+		// fin crear ventana
 		 nextLevel =  0  ;
 		 listObjetos  = new  ArrayList <Objeto>(numerosDeObjetos) ; 
 		 listPersonajesSecundarios = new ArrayList <PersonajeSecundario>(numPersSecund) ;
@@ -68,6 +111,42 @@ public class Juego implements Renderizador{
 		 personajeB = new PersonajePrincipal("Brando", 22,22,3,3, 'A', true, false) ;
 		 ImprimirMapa(mapaActual, personajeA, personajeB);*/		 
 	}
+	// VENTANAS
+	public void configurarVentana(){
+		//this.setSize(310, 210);                                 // colocamos tamanio a la ventana (ancho, alto)
+        this.setLocationRelativeTo(null);                       // centramos la ventana en la pantalla
+        this.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
+        this.setResizable(true);                               // hacemos que la ventana no sea redimiensionable
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container cp=this.getContentPane();
+        cp.setLayout(new BorderLayout());
+        
+        //se agregan los paneles a la ventana
+        add(panel1,BorderLayout.CENTER);
+        add(panel2);
+        
+	}
+	
+	public void leerImagen(){
+		//este metodo carga la imagen de memoria
+		//y la pone en uno de los contenedores
+
+        try {
+            img = ImageIO.read(new File("cuy_1024x768.jpg"));
+            // ImageIO permite leer desde file, url entre otros :)
+            //canvas.drawImage(img,0,0);
+            panel1.add(new JLabel(new ImageIcon(img)));
+            
+        } catch (IOException ex) {
+            System.out.println("No se pudo leer la imagen");
+        }
+        
+    }
+	//CERRAR VENTANAS
+	
+	
+	
+	
 	public void PerdisteElJuego(){
 		System.out.println("Game Over");	
 	}
@@ -185,13 +264,15 @@ public class Juego implements Renderizador{
 			PerdisteElJuego();			 
 		}
 	}
+	
 	public void Historia_1(PersonajePrincipal perA , PersonajePrincipal perB)	{		
-		String linea ; 
-		System.out.println("Bienvenido a Historia1 ");
-		System.out.println("Cristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
-		System.out.println("( cualquier numero y enter para continuar )");
-		linea = teclado.next();
-		Tutorial(perA , perB);			
+		//String linea ; 
+		JOptionPane.showMessageDialog(null,"Bienvenido a Historia1\nCristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
+		//System.out.println("Bienvenido a Historia1 ");
+		//System.out.println("Cristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
+		//System.out.println("( cualquier numero y enter para continuar )");
+		//linea = teclado.next();
+		//Tutorial(perA , perB);			
 		
 	}
 	public void NuevoJuego(PersonajePrincipal perA, PersonajePrincipal perB){
@@ -201,7 +282,102 @@ public class Juego implements Renderizador{
 		System.out.println("Wecome to my world my friend " + linea);
 		Historia_1(perA ,perB);
 	}
+	
+	public void ConfigurarTutorial(){
+		
+		Historia_1(this.personajeA, this.personajeB);
+		panel1.removeAll();
+		remove(panel1);
+		//aqui se setean las propiedades de los contenedores
+		panelTutorial.setSize(1024, 768);
+		panel2.setSize(276, 768);
+		panelTutorial.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
+		panel2.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
+		try {
+            img = ImageIO.read(new File("mapa_tutorial.jpg"));
+            img2 = ImageIO.read(new File("barra_lateral.jpg"));
+            // ImageIO permite leer desde file, url entre otros :)
+            panelTutorial.add(new JLabel(new ImageIcon(img)));
+            panel2.add(new JLabel(new ImageIcon(img2)));
+            
+        } catch (IOException ex) {
+            System.out.println("No se pudo leer la imagen");
+        }
+		add(panelTutorial);
+		add(panel2,BorderLayout.EAST);
+		setVisible(true);
+	}
+	
 	public void PantallaInicial(){
+		
+		//aqui se setean las propiedades de los contenedores
+		panel1.setSize(1300, 768);
+		//panel2.setSize(276, 768);
+		panel1.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
+		//panel2.setBorder(/*BorderFactory.createLineBorder(Color.black)*/null);
+		//configurarVentana();
+        this.setLocationRelativeTo(null);                       // centramos la ventana en la pantalla
+        this.setLayout(null);                                   // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
+        this.setResizable(true);                               // hacemos que la ventana no sea redimiensionable
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container cp=this.getContentPane();
+        cp.setLayout(new BorderLayout());
+        
+        //se agregan los paneles a la ventana
+        add(panel1);
+        //add(panel2);
+		
+		//este metodo carga la imagen de memoria
+		//y la pone en uno de los contenedores
+
+        try {
+            img = ImageIO.read(new File("pantalla_inicio.jpg"));
+            // ImageIO permite leer desde file, url entre otros :)
+            panel1.add(new JLabel(new ImageIcon(img)));
+            
+        } catch (IOException ex) {
+            System.out.println("No se pudo leer la imagen");
+        }
+		
+        //leerImagen();
+		this.setVisible(true);
+		
+		panel1.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				if(e.getX() >= 80 && e.getX() <= 248){
+					if (e.getY() >= 300 && e.getY() <= 360 ){
+						//Configurar para tutorial 1 e iniciar juego
+						
+						ConfigurarTutorial();
+						
+					}
+					if (e.getY() >= 400 && e.getY() <= 460 ){
+						//Configurar para cargar partida
+					}
+					if (e.getY() >= 500 && e.getY() <= 560 ){
+						//Configurar para Salir
+						String[] opciones = {"Si", "No"};
+						 
+				        int opcion = JOptionPane.showOptionDialog(
+				                               null                             //componente
+				                             , "¿Desea salir del juego?"            // Mensaje
+				                             , "Salida del juego"         // Titulo en la barra del cuadro
+				                             , JOptionPane.DEFAULT_OPTION       // Tipo de opciones
+				                             , JOptionPane.INFORMATION_MESSAGE  // Tipo de mensaje (icono)
+				                             , null                             // Icono (ninguno)
+				                             , opciones                         // Opciones personalizadas
+				                             , null                             // Opcion por defecto
+				                           );
+				        if(opcion == 0){ //salir
+				        	System.exit(0);
+				        }
+				        else
+				        	JOptionPane.getRootFrame().dispose();   
+				        	//JOptionPane.dispose();
+					}					
+				}
+			}
+		});
 		
 		int opcion;
 		int salida = 0;
@@ -243,6 +419,7 @@ public class Juego implements Renderizador{
  	    
 		personajeA = cuy1  ; //Xq igualamos aquí? si igual nunca usamos personajeA ni personajeB
 		personajeB = cuy2 ; 
+		//Imagen img=new Imagen();
 		
 	}
 	public void ImprimirMapa(Mapa mapa, PersonajePrincipal cuy1, PersonajePrincipal cuy2){
